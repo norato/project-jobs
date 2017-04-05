@@ -21,4 +21,6 @@ export class CandidatesComponent implements OnInit {
     return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
   }
 
+
+
 }

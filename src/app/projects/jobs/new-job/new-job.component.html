@@ -1,9 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4">
-      <app-job-form (getCandidates)="getCandidates($event)"></app-job-form>
+      <app-job-form [(offer)]="offer" (getCandidates)="getCandidates($event)"></app-job-form>
     </div>
     <div class="col-lg-8">
+      <button class="btn btn-primary" (click)="saveOffer()">Save Candidates</button>
       <app-candidates [candidates]="candidates"></app-candidates>
     </div>
   </div>

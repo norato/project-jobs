@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output, Input, DoCheck } from '@angular/core';
 import { SearchCanditatesService } from './../services/search-canditates.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,8 +7,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, OnDestroy {
+export class FormComponent implements OnInit, OnDestroy, DoCheck {
   @Output() getCandidates: EventEmitter<any> = new EventEmitter<any>();
+  @Input() offer;
+  @Output() offerChange: EventEmitter<any> = new EventEmitter<any>();
 
   jobForm;
   searchCanditatesServiceSub;
@@ -28,17 +30,22 @@ export class FormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.jobForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      nationality: new FormControl('', Validators.required),
-      gender: new FormControl('', Validators.required),
-      positions: new FormControl('', Validators.required),
-      factor: new FormControl('', Validators.required)
+      name: new FormControl(this.offer.name, Validators.required),
+      description: new FormControl(this.offer.description, Validators.required),
+      nationality: new FormControl(this.offer.nationality, Validators.required),
+      gender: new FormControl(this.offer.gender, Validators.required),
+      positions: new FormControl(this.offer.positions, Validators.required),
+      factor: new FormControl(this.offer.factor, Validators.required)
     });
   }
 
   ngOnDestroy() {
     this.searchCanditatesServiceSub.unsubscribe();
+  }
+
+  ngDoCheck() {
+    this.offer = Object.assign({}, this.jobForm.value);
+    this.offerChange.next(this.offer);
   }
 
   submitForm(value) {

@@ -1,3 +1,4 @@
+import { OffersService } from './jobs/services/offers.service';
 import { SearchCanditatesService } from './jobs/services/search-canditates.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectsService } from './services/projects.service';
@@ -26,7 +27,8 @@ import { CandidatesComponent } from './jobs/candidates/candidates.component';
   ],
   providers: [
     ProjectsService,
-    SearchCanditatesService
+    SearchCanditatesService,
+    OffersService
   ]
 })
 export class ProjectsModule { }
