@@ -40,7 +40,7 @@ export class FormComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngOnDestroy() {
-    this.searchCanditatesServiceSub.unsubscribe();
+    if (this.searchCanditatesServiceSub) { this.searchCanditatesServiceSub.unsubscribe(); }
   }
 
   ngDoCheck() {

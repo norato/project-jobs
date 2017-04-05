@@ -1,3 +1,4 @@
+import { ChartsModule } from 'ng2-charts';
 import { OffersService } from './jobs/services/offers.service';
 import { SearchCanditatesService } from './jobs/services/search-canditates.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +11,8 @@ import { ProjectFormComponent } from './project/project-form/project-form.compon
 import { NewJobComponent } from './jobs/new-job/new-job.component';
 import { FormComponent } from './jobs/form/form.component';
 import { CandidatesComponent } from './jobs/candidates/candidates.component';
+import { OfferComponent } from './jobs/offer/offer.component';
+import { GenderChartComponent } from './jobs/offer/charts/gender-chart/gender-chart.component';
 
 @NgModule({
   imports: [
@@ -17,6 +20,7 @@ import { CandidatesComponent } from './jobs/candidates/candidates.component';
     ProjectsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule
   ],
   declarations: [
     ProjectsComponent,
@@ -24,6 +28,8 @@ import { CandidatesComponent } from './jobs/candidates/candidates.component';
     NewJobComponent,
     FormComponent,
     CandidatesComponent,
+    OfferComponent,
+    GenderChartComponent,
   ],
   providers: [
     ProjectsService,
