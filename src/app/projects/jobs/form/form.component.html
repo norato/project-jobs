@@ -1,0 +1,49 @@
+<form [formGroup]="jobForm" (ngSubmit)="submitForm(jobForm.value)">
+  <div class="form-group">
+    <label>Position</label>
+    <input type="text"
+          class="form-control"
+          placeholder="Position"
+          formControlName="name">
+  </div>
+  <div class="form-group">
+    <label>Position Description</label>
+    <textarea class="form-control"
+            placeholder="Position Description"
+            formControlName="description">
+    </textarea>
+  </div>
+  <div class="form-group">
+    <label>Nationality</label>
+    <select class="form-control" formControlName="nationality">
+      <option></option>
+      <option *ngFor="let nationality of nationalities" [ngValue]="nationality.value">
+        {{nationality.key}}
+      </option>
+    </select>
+  </div>
+    <div class="form-group">
+    <label>Gender</label>
+    <select class="form-control" formControlName="gender">
+      <option></option>
+      <option *ngFor="let gender of genders" [ngValue]="gender.value">
+        {{gender.key}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Number of Positions</label>
+    <input type="number"
+          class="form-control"
+          placeholder="Position"
+          formControlName="positions">
+  </div>
+  <div class="form-group">
+    <label>Position Factor</label>
+    <input type="number"
+          class="form-control"
+          placeholder="Position"
+          formControlName="factor">
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

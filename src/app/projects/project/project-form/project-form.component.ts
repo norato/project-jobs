@@ -1,3 +1,4 @@
+import { OnDestroy } from '@angular/core/core';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss']
 })
-export class ProjectFormComponent implements OnInit {
+export class ProjectFormComponent implements OnInit, OnDestroy {
   projectForm;
   projectsServiceSub;
 
@@ -19,6 +20,9 @@ export class ProjectFormComponent implements OnInit {
       description: new FormControl('', Validators.required)
     });
   }
+  ngOnDestroy() {
+    this.projectsServiceSub.unsubscribe();
+  }
 
   submitForm(value) {
     this.projectsServiceSub = this.projectsService.createProject(value)
@@ -26,7 +30,7 @@ export class ProjectFormComponent implements OnInit {
         project => {
           console.log(project);
         }
-      )
+      );
 
   }
 
