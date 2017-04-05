@@ -1,3 +1,6 @@
-<p>
-  projects works!
-</p>
+<ul>
+  <li *ngFor="let project of projects">
+    {{project}}
+  </li>
+</ul>
+<a [routerLink]="['./new']">New Project</a>
