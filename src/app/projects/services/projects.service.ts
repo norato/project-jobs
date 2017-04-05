@@ -14,7 +14,16 @@ export class ProjectsService {
   }
 
   getProjects(): Observable<any> {
-     return this.http.get('http://lvh.me:3001/api/v1/projects')
+     return this.http.get(`${this.apiBase}/api/v1/projects`)
+                  .map(response => response.json());
+  }
+
+  createProject(project): Observable<any> {
+    const params = {
+      name: project.name,
+      description: project.description
+    };
+    return this.http.post(`${this.apiBase}/api/v1/projects`, params)
                   .map(response => response.json());
   }
 

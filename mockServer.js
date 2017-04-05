@@ -1,6 +1,7 @@
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
+var _          = require('lodash');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -25,9 +26,30 @@ router.route('/api/v1/projects')
   // Get Projects
   .get(function(req, res) {
     res.json(Projects);
-});
+  })
 
+  .post(function(req, res){
+    var _newProject = {
+      "name": req.body.name,
+      "description": req.body.description
+    }
+    var newProject = buildProject(_newProject)
+    res.json(newProject);
+  })
 
 app.use('', router);
 app.listen(port);
 console.log('MockServer is running at port ' + port);
+
+
+
+function buildProject(newProject){
+  var index = _.lastIndexOf(Projects.data)
+
+  Projects.push({
+      "id": index + 1,
+      "description": newProject.description,
+      "name": newProject.name
+    })
+  return _.last(Projects)
+}

@@ -1,6 +1,22 @@
-<ul>
-  <li *ngFor="let project of projects">
-    {{project}}
-  </li>
-</ul>
-<a [routerLink]="['./new']">New Project</a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title"></h4>
+          <p class="card-text"></p>
+          <a [routerLink]="['./new']" class="btn btn-primary">New Project</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3" *ngFor="let project of projects">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">{{ project.name }}</h4>
+          <p class="card-text"> {{ project.description }}</p>
+          <a href="#" class="btn btn-primary">Offers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
