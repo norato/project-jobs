@@ -42,7 +42,6 @@ export class NewJobComponent implements OnInit, OnDestroy {
 
   saveOffer() {
     this.offer.candidates = this.candidates;
-    debugger
     this.offerSub = this.offersService
       .saveOffer(this.projectId, this.offer)
       .subscribe(

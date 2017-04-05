@@ -29,19 +29,21 @@ router.route('/api/v1/projects')
   })
 
   .post(function(req, res){
-    var _newProject = {
-      "name": req.body.name,
-      "description": req.body.description
-    }
-    var newProject = buildProject(_newProject)
+    var newProject = buildProject(req.body)
     res.json(newProject);
+  })
+
+var Jobs = [];
+
+router.route('/api/v1/projects/:projectId/jobs')
+  .post(function(req, res){
+    var newJob = buildJob(req.body)
+    res.json(newJob);
   })
 
 app.use('', router);
 app.listen(port);
 console.log('MockServer is running at port ' + port);
-
-
 
 function buildProject(newProject){
   var index = _.lastIndexOf(Projects.data)
@@ -52,4 +54,20 @@ function buildProject(newProject){
       "name": newProject.name
     })
   return _.last(Projects)
+}
+
+function buildJob(newJob){
+  var index = _.lastIndexOf(Jobs.data)
+
+  Jobs.push({
+      "id": index + 1,
+      "description": newJob.description,
+      "name": newJob.name,
+      "nationality": newJob.nationality,
+      "gender": newJob.gender,
+      "positions": newJob.positions,
+      "factor": newJob.factor,
+      "candidates": newJob.candidates
+  })
+  return _.last(Jobs)
 }
