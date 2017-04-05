@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-job.component.scss']
 })
 export class NewJobComponent implements OnInit {
+  candidates;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getCandidates(candidates) {
+    this.candidates = candidates;
   }
 
 }

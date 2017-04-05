@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectFormComponent } from './project/project-form/project-form.component';
 import { NewJobComponent } from './jobs/new-job/new-job.component';
 import { FormComponent } from './jobs/form/form.component';
+import { CandidatesComponent } from './jobs/candidates/candidates.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FormComponent } from './jobs/form/form.component';
     ProjectFormComponent,
     NewJobComponent,
     FormComponent,
+    CandidatesComponent,
   ],
   providers: [
     ProjectsService,

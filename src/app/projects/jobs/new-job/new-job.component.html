@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4">
-      <app-job-form></app-job-form>
+      <app-job-form (getCandidates)="getCandidates($event)"></app-job-form>
+    </div>
+    <div class="col-lg-8">
+      <app-candidates [candidates]="candidates"></app-candidates>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { SearchCanditatesService } from './../services/search-canditates.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-job-form',
@@ -8,6 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit, OnDestroy {
+  @Output() getCandidates: EventEmitter<any> = new EventEmitter<any>();
 
   jobForm;
   searchCanditatesServiceSub;
@@ -21,7 +22,7 @@ export class FormComponent implements OnInit, OnDestroy {
     { key: 'England', value: 'GB'},
     { key: 'France', value: 'FR'},
     { key: 'Netherlands', value: 'NL'}
-  ]
+  ];
 
   constructor(private searchCanditatesService: SearchCanditatesService) { }
 
@@ -50,7 +51,7 @@ export class FormComponent implements OnInit, OnDestroy {
     .searchCandidates(params)
       .subscribe(
         candidates => {
-          console.log(candidates);
+          this.getCandidates.emit(candidates.results);
         }
       );
 
