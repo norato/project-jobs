@@ -35,6 +35,12 @@ router.route('/api/v1/projects')
 
 var Jobs = [];
 
+router.route('/api/v1/projects/:projectId/jobs/:offerId')
+  .get(function(req, res) {
+    var offerId = parseInt(req.params.offerId);
+    res.json(_.find(Jobs, function(job){ return job.id === offerId }));
+  })
+
 router.route('/api/v1/projects/:projectId/jobs')
   .get(function(req, res) {
     res.json(Jobs);
@@ -44,10 +50,6 @@ router.route('/api/v1/projects/:projectId/jobs')
     res.json(newJob);
   })
 
-router.route('/api/v1/projects/:projectId/jobs/:offerId')
-  .get(function(req, res) {
-    res.json(_.find(Jobs, function(job){ return job.id === res.body.offerId }));
-  })
 
 app.use('', router);
 app.listen(port);
