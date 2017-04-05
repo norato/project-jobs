@@ -36,9 +36,17 @@ router.route('/api/v1/projects')
 var Jobs = [];
 
 router.route('/api/v1/projects/:projectId/jobs')
+  .get(function(req, res) {
+    res.json(Jobs);
+  })
   .post(function(req, res){
     var newJob = buildJob(req.body)
     res.json(newJob);
+  })
+
+router.route('/api/v1/projects/:projectId/jobs/:offerId')
+  .get(function(req, res) {
+    res.json(_.find(Jobs, function(job){ return job.id === res.body.offerId }));
   })
 
 app.use('', router);
@@ -46,7 +54,7 @@ app.listen(port);
 console.log('MockServer is running at port ' + port);
 
 function buildProject(newProject){
-  var index = _.lastIndexOf(Projects.data)
+  var index = _.lastIndexOf(Projects)
 
   Projects.push({
       "id": index + 1,
@@ -57,7 +65,7 @@ function buildProject(newProject){
 }
 
 function buildJob(newJob){
-  var index = _.lastIndexOf(Jobs.data)
+  var index = _.lastIndexOf(Jobs)
 
   Jobs.push({
       "id": index + 1,

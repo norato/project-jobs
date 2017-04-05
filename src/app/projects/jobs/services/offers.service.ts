@@ -12,6 +12,11 @@ export class OffersService {
     this.apiBase = environment.endpoint;
   }
 
+  getOffer(projectId, offerId): Observable<any> {
+    return this.http.get(`${this.apiBase}/api/v1/projects/${projectId}/jobs/${offerId}`)
+                  .map(response => response.json());
+  }
+
   saveOffer(projectId, offer): Observable<any> {
     const params = {
       name: offer.name,
