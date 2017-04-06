@@ -1,6 +1,7 @@
+import { AppChartsModule } from './charts/charts.module';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -9,6 +10,7 @@ import { ProjectsComponent } from './projects/projects/projects.component';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent
   ],
@@ -17,7 +19,8 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    AppChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

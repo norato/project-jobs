@@ -14,6 +14,11 @@ import { CommonModule } from '@angular/common';
     GenderChartComponent,
     AgesChartComponent,
     NationalitiesChartComponent,
+  ],
+  exports: [
+    GenderChartComponent,
+    AgesChartComponent,
+    NationalitiesChartComponent
   ]
 })
 export class AppChartsModule { }

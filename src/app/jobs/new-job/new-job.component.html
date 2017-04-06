@@ -5,7 +5,14 @@
     </div>
     <div class="col-lg-8">
       <button class="btn btn-primary" (click)="saveOffer()">Save Candidates</button>
-      <app-candidates [candidates]="candidates"></app-candidates>
+      <tabset *ngIf="candidates" >
+        <tab heading='Candidates'>
+          <app-candidates [candidates]="candidates"></app-candidates>
+        </tab>
+        <tab heading='Graphs'>
+          <app-graphs [candidates]="candidates"></app-graphs>
+        </tab>
+      </tabset>
     </div>
   </div>
 </div>
