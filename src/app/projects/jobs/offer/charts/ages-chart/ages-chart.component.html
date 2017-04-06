@@ -1,0 +1,11 @@
+<div style="display: block">
+  <canvas baseChart
+          [datasets]="agesChartData"
+          [labels]="agesChartLabels"
+          [options]="agesChartOptions"
+          [legend]="agesChartLegend"
+          [chartType]="agesChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

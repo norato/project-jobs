@@ -13,6 +13,7 @@ import { FormComponent } from './jobs/form/form.component';
 import { CandidatesComponent } from './jobs/candidates/candidates.component';
 import { OfferComponent } from './jobs/offer/offer.component';
 import { GenderChartComponent } from './jobs/offer/charts/gender-chart/gender-chart.component';
+import { AgesChartComponent } from './jobs/offer/charts/ages-chart/ages-chart.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { GenderChartComponent } from './jobs/offer/charts/gender-chart/gender-ch
     CandidatesComponent,
     OfferComponent,
     GenderChartComponent,
+    AgesChartComponent,
   ],
   providers: [
     ProjectsService,
