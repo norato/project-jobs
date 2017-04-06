@@ -22,6 +22,7 @@ export class AgesChartComponent implements OnChanges {
   ngOnChanges() {
     if (this.candidates) {
      const byYear = this.orderByYear();
+     this.agesChartLabels = [];
      this.agesChartData = this.fillValues(byYear);
     }
   }

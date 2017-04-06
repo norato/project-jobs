@@ -17,8 +17,9 @@ export class NationalitiesChartComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.candidates) {
-     const byYear = this.orderByYear();
-    this.nationalitiesChartData = this.fillValues(byYear);
+      this.nationalitiesChartLabels = [];
+      const byYear = this.orderByYear();
+      this.nationalitiesChartData = this.fillValues(byYear);
     }
   }
 
