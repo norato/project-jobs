@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 })
 export class GenderChartComponent implements AfterContentChecked {
 
-  @Input() candidates: any[];
+  @Input() candidates;
 
   public genderChartLabels: string[] = ['Male', 'Female'];
   public genderChartData: number[] = [];
@@ -24,6 +24,7 @@ export class GenderChartComponent implements AfterContentChecked {
       const getValues = this.candidates
         .reduce(
           ( genderCount, candidate ) => {
+            debugger
             const foundResult = _.findIndex(genderCount, (result) => result.key === candidate.gender );
             if ( foundResult !== -1 ) {
               genderCount[foundResult].value++;
@@ -33,9 +34,8 @@ export class GenderChartComponent implements AfterContentChecked {
               return genderCount;
             }
           }, []
-        )
-        .map( count => count.value );
-      this.genderChartData = getValues;
+        );
+      this.genderChartData = _.map(getValues, count => count.value);
     }
   }
 }

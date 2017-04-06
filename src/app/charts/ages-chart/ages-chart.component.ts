@@ -22,7 +22,7 @@ export class AgesChartComponent implements AfterContentChecked {
   ngAfterContentChecked() {
     if (this.candidates && this.agesChartData.length === 0 ) {
      const byYear = this.orderByYear();
-    this.agesChartData = this.fillValues(byYear);
+     this.agesChartData = this.fillValues(byYear);
     }
   }
 
