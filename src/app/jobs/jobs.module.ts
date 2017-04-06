@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
     NewJobComponent,
     FormComponent,
     CandidatesComponent,
-    OfferComponent,
+    // OfferComponent,
   ],
   providers: [
     SearchCanditatesService,
