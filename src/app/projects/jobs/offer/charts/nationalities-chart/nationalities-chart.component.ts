@@ -1,44 +1,39 @@
-import { Component, Input, AfterContentChecked } from '@angular/core';
+import { Component, AfterContentChecked, Input } from '@angular/core';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 
 @Component({
-  selector: 'app-ages-chart',
-  templateUrl: './ages-chart.component.html',
-  styleUrls: ['./ages-chart.component.scss']
+  selector: 'app-nationalities-chart',
+  templateUrl: './nationalities-chart.component.html',
+  styleUrls: ['./nationalities-chart.component.scss']
 })
-export class AgesChartComponent implements AfterContentChecked {
-  @Input() candidates;
-  public agesChartOptions: any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public agesChartLabels: any[] = [];
-  public agesChartType = 'bar';
-  public agesChartLegend = true;
+export class NationalitiesChartComponent implements AfterContentChecked {
 
-  public agesChartData: any[] = [];
+  @Input() candidates;
+
+  public nationalitiesChartLabels: any[] = [];
+
+  public nationalitiesChartData: any = [];
+  public nationalitiesChartType = 'radar';
 
   ngAfterContentChecked() {
-    if (this.candidates && this.agesChartData.length === 0 ) {
+    if (this.candidates && this.nationalitiesChartData.length === 0 ) {
      const byYear = this.orderByYear();
-    this.agesChartData = this.fillValues(byYear);
+    this.nationalitiesChartData = this.fillValues(byYear);
     }
   }
 
-  orderByYear() {
+    orderByYear() {
      const getValues = _.reduce(this.candidates,
           ( ageCount, candidate ) => {
-            const year = moment(candidate.dob).year();
-            const foundResult = _.find(ageCount, (result) => result.key === year );
+            const foundResult = _.find(ageCount, (result) => result.key === candidate.nat );
             if ( foundResult !== undefined ) {
               foundResult.all.data++;
               foundResult[candidate.gender].data++;
               return ageCount;
             } else {
-              this.agesChartLabels.push(year);
+              this.nationalitiesChartLabels.push(candidate.nat);
               const result = {
-                key: year,
+                key: candidate.nat,
                 all: {
                   data: 1,
                   label: 'ALL'

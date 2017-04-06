@@ -3,6 +3,9 @@
     <div class="col-lg-3" *ngIf="offerSet">
       <app-gender-chart [candidates]="offer.candidates"></app-gender-chart>
     </div>
+    <div class="col-lg-3" *ngIf="offerSet">
+      <app-nationalities-chart [candidates]="offer.candidates"></app-nationalities-chart>
+    </div>
     <div class="col-lg-6" *ngIf="offerSet">
       <app-ages-chart [candidates]="offer.candidates"></app-ages-chart>
     </div>
