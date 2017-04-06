@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
   { path: 'projects', loadChildren: 'app/projects/projects.module#ProjectsModule'},
+  { path: 'jobs', loadChildren: 'app/jobs/jobs.module#JobsModule'},
   { path: '', redirectTo: 'projects', pathMatch: 'full'}
 ];
 

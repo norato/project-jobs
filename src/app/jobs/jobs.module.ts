@@ -1,3 +1,4 @@
+import { JobsRoutingModule } from './jobs.routing.module';
 import { OffersService } from './services/offers.service';
 import { SearchCanditatesService } from './services/search-canditates.service';
 import { OfferComponent } from './offer/offer.component';
@@ -12,7 +13,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JobsRoutingModule
   ],
   declarations: [
     NewJobComponent,
