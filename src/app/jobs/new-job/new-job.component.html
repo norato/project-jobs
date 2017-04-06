@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4">
+      <button class="btn btn-primary" (click)="saveOffer()">Save Candidates</button>
       <app-job-form [(offer)]="offer" (getCandidates)="getCandidates($event)"></app-job-form>
     </div>
     <div class="col-lg-8">
-      <button class="btn btn-primary" (click)="saveOffer()">Save Candidates</button>
       <tabset *ngIf="candidates" >
         <tab heading='Candidates'>
           <app-candidates [candidates]="candidates"></app-candidates>

@@ -24,7 +24,6 @@ export class GenderChartComponent implements AfterContentChecked {
       const getValues = this.candidates
         .reduce(
           ( genderCount, candidate ) => {
-            debugger
             const foundResult = _.findIndex(genderCount, (result) => result.key === candidate.gender );
             if ( foundResult !== -1 ) {
               genderCount[foundResult].value++;
