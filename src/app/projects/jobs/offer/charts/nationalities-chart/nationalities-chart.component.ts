@@ -22,37 +22,37 @@ export class NationalitiesChartComponent implements AfterContentChecked {
     }
   }
 
-    orderByYear() {
-     const getValues = _.reduce(this.candidates,
-          ( ageCount, candidate ) => {
-            const foundResult = _.find(ageCount, (result) => result.key === candidate.nat );
-            if ( foundResult !== undefined ) {
-              foundResult.all.data++;
-              foundResult[candidate.gender].data++;
-              return ageCount;
-            } else {
-              this.nationalitiesChartLabels.push(candidate.nat);
-              const result = {
-                key: candidate.nat,
-                all: {
-                  data: 1,
-                  label: 'ALL'
-                },
-                male: {
-                  data: candidate.gender === 'male' ? 1 : 0,
-                  label: 'Male'
-                },
-                female: {
-                  data: candidate.gender === 'female' ? 1 : 0,
-                  label: 'Female'
-                }
-              };
-              ageCount.push(result);
-              return ageCount;
-            }
-          }, []
-        );
-        return _.orderBy(getValues, ['key']);
+  orderByYear() {
+    const getValues = _.reduce(this.candidates,
+        ( ageCount, candidate ) => {
+          const foundResult = _.find(ageCount, (result) => result.key === candidate.nat );
+          if ( foundResult !== undefined ) {
+            foundResult.all.data++;
+            foundResult[candidate.gender].data++;
+            return ageCount;
+          } else {
+            this.nationalitiesChartLabels.push(candidate.nat);
+            const result = {
+              key: candidate.nat,
+              all: {
+                data: 1,
+                label: 'ALL'
+              },
+              male: {
+                data: candidate.gender === 'male' ? 1 : 0,
+                label: 'Male'
+              },
+              female: {
+                data: candidate.gender === 'female' ? 1 : 0,
+                label: 'Female'
+              }
+            };
+            ageCount.push(result);
+            return ageCount;
+          }
+        }, []
+      );
+      return _.orderBy(getValues, ['key']);
   }
 
   fillValues(values) {
