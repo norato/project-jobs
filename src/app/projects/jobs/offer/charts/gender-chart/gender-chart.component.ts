@@ -1,5 +1,6 @@
 import { AfterContentChecked } from '@angular/core/core';
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-gender-chart',
@@ -20,18 +21,21 @@ export class GenderChartComponent implements AfterContentChecked {
 
   ngAfterContentChecked() {
     if (this.candidates && this.genderChartData.length === 0 ) {
-      this.genderChartData.push(this.getGenderSize('male'));
-      this.genderChartData.push(this.getGenderSize('female'));
+      const getValues = this.candidates
+        .reduce(
+          ( genderCount, candidate ) => {
+            const foundResult = _.findIndex(genderCount, (result) => result.key === candidate.gender );
+            if ( foundResult !== -1 ) {
+              genderCount[foundResult].value++;
+              return genderCount;
+            } else {
+              genderCount.push({ key: candidate.gender, value: 1 });
+              return genderCount;
+            }
+          }, []
+        )
+        .map( count => count.value );
+      this.genderChartData = getValues;
     }
   }
-
-
-
-  getGenderSize(gender) {
-    return this.candidates
-      .filter(
-        candidate => candidate.gender === gender
-      ).length;
-  }
-
 }

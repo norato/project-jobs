@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OnDestroy } from '@angular/core/core';
 import { ProjectsService } from './../../services/projects.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,10 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   projectForm;
   projectsServiceSub;
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(
+    private projectsService: ProjectsService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.projectForm = new FormGroup({
@@ -28,7 +32,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     this.projectsServiceSub = this.projectsService.createProject(value)
       .subscribe(
         project => {
-          console.log(project);
+          this.router.navigate(['../projects']);
         }
       );
 

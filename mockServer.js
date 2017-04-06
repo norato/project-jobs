@@ -38,7 +38,8 @@ var Jobs = [];
 router.route('/api/v1/projects/:projectId/jobs/:offerId')
   .get(function(req, res) {
     var offerId = parseInt(req.params.offerId);
-    res.json(_.find(Jobs, function(job){ return job.id === offerId }));
+    // res.json(_.find(Jobs, function(job){ return job.id === offerId }));
+    res.json(require('./offer.json'))
   })
 
 router.route('/api/v1/projects/:projectId/jobs')
