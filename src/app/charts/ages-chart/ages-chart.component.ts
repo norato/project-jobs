@@ -1,4 +1,4 @@
-import { Component, Input, AfterContentChecked } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
@@ -7,20 +7,20 @@ import * as moment from 'moment';
   templateUrl: './ages-chart.component.html',
   styleUrls: ['./ages-chart.component.scss']
 })
-export class AgesChartComponent implements AfterContentChecked {
+export class AgesChartComponent implements OnChanges {
   @Input() candidates;
   public agesChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
   public agesChartLabels: any[] = [];
-  public agesChartType = 'bar';
+  public agesChartType = 'line';
   public agesChartLegend = true;
 
   public agesChartData: any[] = [];
 
-  ngAfterContentChecked() {
-    if (this.candidates && this.agesChartData.length === 0 ) {
+  ngOnChanges() {
+    if (this.candidates) {
      const byYear = this.orderByYear();
      this.agesChartData = this.fillValues(byYear);
     }

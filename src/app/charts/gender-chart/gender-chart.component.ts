@@ -1,5 +1,4 @@
-import { AfterContentChecked } from '@angular/core/core';
-import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { Component, Input, AfterContentChecked, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -7,7 +6,7 @@ import * as _ from 'lodash';
   templateUrl: './gender-chart.component.html',
   styleUrls: ['./gender-chart.component.scss']
 })
-export class GenderChartComponent implements AfterContentChecked {
+export class GenderChartComponent implements OnChanges {
 
   @Input() candidates;
 
@@ -19,8 +18,8 @@ export class GenderChartComponent implements AfterContentChecked {
     this.genderChartData = [];
   }
 
-  ngAfterContentChecked() {
-    if (this.candidates && this.genderChartData.length === 0 ) {
+  ngOnChanges() {
+    if (this.candidates) {
       const getValues = this.candidates
         .reduce(
           ( genderCount, candidate ) => {

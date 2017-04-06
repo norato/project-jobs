@@ -1,4 +1,4 @@
-import { Component, AfterContentChecked, Input } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -6,7 +6,7 @@ import * as _ from 'lodash';
   templateUrl: './nationalities-chart.component.html',
   styleUrls: ['./nationalities-chart.component.scss']
 })
-export class NationalitiesChartComponent implements AfterContentChecked {
+export class NationalitiesChartComponent implements OnChanges {
 
   @Input() candidates;
 
@@ -15,8 +15,8 @@ export class NationalitiesChartComponent implements AfterContentChecked {
   public nationalitiesChartData: any = [];
   public nationalitiesChartType = 'radar';
 
-  ngAfterContentChecked() {
-    if (this.candidates && this.nationalitiesChartData.length === 0 ) {
+  ngOnChanges() {
+    if (this.candidates) {
      const byYear = this.orderByYear();
     this.nationalitiesChartData = this.fillValues(byYear);
     }

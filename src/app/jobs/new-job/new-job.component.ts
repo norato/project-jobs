@@ -1,6 +1,6 @@
 import { Offer } from '../offer';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { OffersService } from './../services/offers.service';
 
 
@@ -9,7 +9,7 @@ import { OffersService } from './../services/offers.service';
   templateUrl: './new-job.component.html',
   styleUrls: ['./new-job.component.scss']
 })
-export class NewJobComponent implements OnInit, OnDestroy {
+export class NewJobComponent implements OnDestroy {
   candidates;
   offer: Offer;
 
@@ -26,9 +26,6 @@ export class NewJobComponent implements OnInit, OnDestroy {
       .subscribe(
         params => this.projectId = params['project_id']
       );
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {
